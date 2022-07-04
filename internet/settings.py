@@ -15,7 +15,7 @@ SECRET_KEY = os.environ.setdefault('SECRET_KEY', 'django-insecure-5d)ghzl(=i*q+p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.setdefault('DEBUG', 'True')
 
-ALLOWED_HOSTS = ['https://internet-papuchin.herokuapp.com', '127.0.0.1', 'localhost']
+ALLOWED_HOSTS = ['internet-papuchin.herokuapp.com', '127.0.0.1', 'localhost']
 
 
 # Application definition
