@@ -6,6 +6,7 @@ class CustomerAdmin(admin.ModelAdmin):
     readonly_fields = ('created','updated')
     list_display = ('name', 'ip_address', 'mbps', 'is_active')
     fields = ('name', 'ip_address', 'home_address', 'phone', 'month_payment', 'mbps', 'install_date', 'is_active')
+    search_fields = ('name', 'ip_address')
 
 class PaymentAdmin(admin.ModelAdmin):
     readonly_fields = ('created','updated')
