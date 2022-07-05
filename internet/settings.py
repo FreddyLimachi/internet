@@ -28,7 +28,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'core'
+    'core',
+    'simple_history',
 ]
 
 
@@ -61,7 +62,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'internet.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
@@ -128,23 +128,6 @@ JAZZMIN_SETTINGS = {
     "user_avatar": None,
     #"login_logo": 'logos/logo.png',
 
-    ############
-    # Top Menu #
-    ############
-
-    # Links to put along the top menu
-    "topmenu_links": [
-
-        # model admin to link to (Permissions checked against model)
-        {"model": "auth.User"},
-
-        # App with dropdown menu to all its models pages (Permissions checked against models)
-        {"app": "una_app_cualquiera"},
-    ],
-
-    #############
-    # User Menu #
-    #############
 
     # Additional links to include in the user menu on the top right ("app" url type is not allowed)
     "usermenu_links": [
@@ -153,7 +136,7 @@ JAZZMIN_SETTINGS = {
     ],
 
 
-    "navigation_expanded": False,
+    "navigation_expanded": True,
 }
 
 

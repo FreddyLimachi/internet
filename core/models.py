@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import date
 from dateutil.relativedelta import relativedelta
+from simple_history.models import HistoricalRecords
 
 
 months = [
@@ -31,25 +32,36 @@ class Customer(models.Model):
     is_active = models.BooleanField('Estado', default = True)
     created = models.DateTimeField('Fecha de creación', auto_now_add=True)
     updated = models.DateTimeField('Fecha de modificación', auto_now=True)
+    historical = HistoricalRecords()
 
-    def __str__(self):
-        return self.name
 
     class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
+    
+    def __str__(self):
+        return self.name
+    
+    @property
+    def _history_user(self):
+        return self.changed_by
+    
+    @_history_user.setter
+    def _history_user(self, value):
+        self.changed_by = value
 
 
 class Payment(models.Model):
 
     id = models.AutoField(primary_key=True)
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Cliente')
-    month = models.SmallIntegerField('Mes',max_length=10, choices=months, default=int((date.today()-relativedelta(months=1)).strftime("%m")))
+    month = models.SmallIntegerField('Mes', choices=months, default=int((date.today()-relativedelta(months=1)).strftime("%m")))
     year = models.CharField('Año',max_length=10, default=date.today().strftime("%Y"))
     amount = models.CharField('Monto', max_length=10, default=50)
-    date = models.DateField('Fecha de pago', default=date.today())
+    date = models.DateField('Fecha de pago', default=date.today)
     created = models.DateTimeField('Fecha de creación', auto_now_add=True)
     updated = models.DateTimeField('Fecha de modificación', auto_now=True)
+    historical = HistoricalRecords()
 
     class Meta:
         verbose_name = 'Pago'
@@ -57,6 +69,14 @@ class Payment(models.Model):
     
     def __str__(self):
         return f'{self.customer.name}, {months[self.month-1][1]} {self.year} - {self.amount} soles'
+    
+    @property
+    def _history_user(self):
+        return self.changed_by
+    
+    @_history_user.setter
+    def _history_user(self, value):
+        self.changed_by = value
 
 
 class History(models.Model):
@@ -66,6 +86,7 @@ class History(models.Model):
     date = models.DateField('Fecha')
     created = models.DateTimeField('Fecha de creación', auto_now_add=True)
     updated = models.DateTimeField('Fecha de modificación', auto_now=True)
+    historical = HistoricalRecords()
 
     class Meta:
         verbose_name = 'Historial'
@@ -73,3 +94,11 @@ class History(models.Model):
     
     def __str__(self):
         return f'{self.customer.name}, {self.action}, {self.date}'
+    
+    @property
+    def _history_user(self):
+        return self.changed_by
+    
+    @_history_user.setter
+    def _history_user(self, value):
+        self.changed_by = value
