@@ -73,7 +73,7 @@ DATABASES = {
         'USER': os.environ.setdefault('DB_USER', 'postgres'),
         'PASSWORD': os.environ.setdefault('DB_PASSWORD', 'password'),
         'HOST': os.environ.setdefault('DB_HOST', '127.0.0.1'),
-        'PORT': '5432',
+        'PORT': os.environ.setdefault('DB_PORT', '5432'),
     }
 }
 
