@@ -110,7 +110,10 @@ USE_L10N = True
 
 USE_TZ = True
 
-CSRF_TRUSTED_ORIGINS = ['https://web-production-cd40.up.railway.app']
+CSRF_TRUSTED_ORIGINS = [
+    'https://web-production-cd40.up.railway.app',
+    'https://internet-papuchin.up.railway.app'
+    ]
 
 JAZZMIN_UI_TWEAKS = {
     "theme": "pulse",
