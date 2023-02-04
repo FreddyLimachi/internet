@@ -13,7 +13,7 @@ months = [
     (6, 'Junio'),
     (7, 'Julio'),
     (8, 'Agosto'),
-    (9, 'Septembre'),
+    (9, 'Septiembre'),
     (10, 'Octubre'),
     (11, 'Noviembre'),
     (12, 'Diciembre'),
@@ -38,6 +38,7 @@ class Customer(models.Model):
     class Meta:
         verbose_name = 'Cliente'
         verbose_name_plural = 'Clientes'
+        ordering = ['name']
     
     def __str__(self):
         return self.name
@@ -57,7 +58,7 @@ class Payment(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name='Cliente')
     month = models.SmallIntegerField('Mes', choices=months, default=int((date.today()-relativedelta(months=1)).strftime("%m")))
     year = models.CharField('Año',max_length=10, default=date.today().strftime("%Y"))
-    amount = models.CharField('Monto', max_length=10, default=50)
+    amount = models.CharField('Monto', max_length=10, default='auto', blank=True)
     date = models.DateField('Fecha de pago', default=date.today)
     created = models.DateTimeField('Fecha de creación', auto_now_add=True)
     updated = models.DateTimeField('Fecha de modificación', auto_now=True)
@@ -66,6 +67,7 @@ class Payment(models.Model):
     class Meta:
         verbose_name = 'Pago'
         verbose_name_plural = 'Pagos'
+        ordering = ['year','month']
     
     def __str__(self):
         return f'{self.customer.name}, {months[self.month-1][1]} {self.year} - {self.amount} soles'
@@ -77,6 +79,14 @@ class Payment(models.Model):
     @_history_user.setter
     def _history_user(self, value):
         self.changed_by = value
+    
+    def save(self, *args, **kwargs):
+        
+        if (self.amount).replace(' ','')=='' or self.amount=='0' or self.amount=='Auto' or self.amount=='auto':
+            customer = Customer.objects.get(pk=self.customer.id)
+            self.amount = customer.month_payment               
+            
+        super(Payment, self).save(*args, **kwargs)
 
 
 class History(models.Model):

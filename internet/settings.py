@@ -69,7 +69,7 @@ WSGI_APPLICATION = 'internet.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.setdefault('DB_NAME', 'internet2'),
+        'NAME': os.environ.setdefault('DB_NAME', 'internet'),
         'USER': os.environ.setdefault('DB_USER', 'postgres'),
         'PASSWORD': os.environ.setdefault('DB_PASSWORD', 'password'),
         'HOST': os.environ.setdefault('DB_HOST', '127.0.0.1'),
@@ -139,10 +139,10 @@ JAZZMIN_SETTINGS = {
         {"model": "auth.user"}
     ],
 
-
     "navigation_expanded": True,
 }
 
+ICON_EDIT_URL = 'https://cdn.discordapp.com/attachments/913266032301461534/1058395464690585701/category-search-3829.png'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
