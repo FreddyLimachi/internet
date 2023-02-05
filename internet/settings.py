@@ -15,7 +15,7 @@ SECRET_KEY = os.environ.setdefault('SECRET_KEY', 'django-insecure-5d)ghzl(=i*q+p
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.setdefault('DEBUG', 'True')
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['internet-papuchin.up.railway.app', 'https://web-production-cd40.up.railway.app',]
 
 
 # Application definition
