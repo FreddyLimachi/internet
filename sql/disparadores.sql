@@ -14,6 +14,7 @@ End
 $$
 Language plpgsql;
 
+
 /* Actualizar estado del cliente */
 create trigger customer_au after update on core_customer
 for each row execute procedure sp_insert_state_history();
