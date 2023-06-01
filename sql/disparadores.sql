@@ -30,6 +30,7 @@ End
 $$
 Language plpgsql;
 
+
 /* Ingresar nuevo cliente */
 create trigger customer_ai after insert on core_customer
 for each row execute procedure sp_insert_install_history();
