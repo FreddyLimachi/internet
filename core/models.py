@@ -41,7 +41,7 @@ class Customer(models.Model):
         ordering = ['name']
     
     def __str__(self):
-        return self.name
+        return self.id
     
     @property
     def _history_user(self):
