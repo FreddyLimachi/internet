@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'accounts',
-    'simple_history',
 ]
 
 
@@ -65,12 +64,12 @@ WSGI_APPLICATION = 'internet.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'ENGINE': 'django.db.backends.mysql',
         'NAME': os.environ.setdefault('DB_NAME', 'internet'),
-        'USER': os.environ.setdefault('DB_USER', 'postgres'),
-        'PASSWORD': os.environ.setdefault('DB_PASSWORD', 'password'),
-        'HOST': os.environ.setdefault('DB_HOST', '127.0.0.1'),
-        'PORT': os.environ.setdefault('DB_PORT', '5432'),
+        'USER': os.environ.setdefault('DB_USER', 'django'),
+        'PASSWORD': os.environ.setdefault('DB_PASSWORD', 'django-user-password'),
+        'HOST': os.environ.setdefault('DB_HOST', 'localhost'),
+        'PORT': os.environ.setdefault('DB_PORT', '3306'),
     }
 }
 
