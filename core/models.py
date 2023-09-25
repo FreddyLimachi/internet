@@ -39,7 +39,7 @@ class Customer(models.Model):
         ordering = ['name']
     
     def __str__(self):
-        return str(self.id)
+        return str(self.name)
 
 
 class Payment(models.Model):

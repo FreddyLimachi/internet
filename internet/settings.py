@@ -17,7 +17,7 @@ ALLOWED_HOSTS = ['internet-papuchin.up.railway.app', 'https://web-production-cd4
 # Application definition
 
 INSTALLED_APPS = [
-    'jazzmin',
+
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'accounts',
+    'polymorphic',
 ]
 
 

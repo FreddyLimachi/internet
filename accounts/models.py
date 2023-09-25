@@ -52,4 +52,3 @@ class AccountItem(models.Model):
         
         super().save(*args, **kwargs)
         self.account.save()
-    
